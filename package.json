@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@mantine/core": "^6.0.13",
+    "@mantine/hooks": "^6.0.13",
     "@types/node": "20.2.6",
     "@types/react": "18.2.11",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
+    "framer-motion": "^10.12.16",
     "next": "13.4.4",
     "postcss": "8.4.24",
     "react": "18.2.0",
