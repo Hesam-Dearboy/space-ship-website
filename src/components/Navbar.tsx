@@ -75,7 +75,7 @@ function Navbar() {
 
       <ul
         className={` list-none bg-[#97979729] transition rounded-l-md backdrop-blur-xl translate-x-full fixed top-0 right-0 h-screen w-64 z-0 pt-28 pl-8 md:relative md:h-24 md:w-fit md:px-12 md:pt-0 md:translate-x-0 md:flex md:justify-center md:items-center md:gap-x-12
-          lg:min-w-[50vw] ${opened && "  -translate-x-[0.1]"}`}
+          lg:min-w-[50vw] ${!opened ? "  translate-x-40" : "translate-x-0"  }`}
       >
         {pages.map(({ title, href }, index) => (
           <Link
