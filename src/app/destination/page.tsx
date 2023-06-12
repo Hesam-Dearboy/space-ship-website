@@ -51,7 +51,7 @@ const planets = [
   },
 ];
 
-function page() {
+function DestinationPage() {
   const [actual, setActual] = useState(0);
   const previous = usePrevious(actual);
 
@@ -144,4 +144,4 @@ function page() {
   );
 }
 
-export default page;
+export default DestinationPage;

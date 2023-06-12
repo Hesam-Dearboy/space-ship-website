@@ -47,7 +47,7 @@ const members = [
   },
 ];
 
-function page() {
+function CrewPage() {
   let [actual, setActual] = useState(0);
   const previous = usePrevious(actual);
 
@@ -118,4 +118,4 @@ function page() {
   );
 }
 
-export default page;
+export default CrewPage;
