@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
- 
-
 
 import logo from "@/assets/shared/logo.svg";
 import hamburger from "@/assets/shared/icon-hamburger.svg";
@@ -34,27 +32,36 @@ const pages = [
 ];
 
 const barlow = Barlow_Condensed({
-    subsets: ["latin"],
-    weight: "400",
-    variable: "--barlow-font",
-  });
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--barlow-font",
+});
 
 function Navbar() {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, setOpened] = useState<boolean>(false);
+
+  console.log(opened)
 
   const path = usePathname();
 
   const isActive = useCallback((href: string) => path === href, [path]);
 
   return (
-    <header className={` ${barlow.variable} relative z-30 flex justify-between items-center px-6 md:px-0 md:pl-10 lg:pt-10` }>
+    <header
+      className={` ${barlow.variable} relative z-30 flex justify-between items-center px-6 md:px-0 md:pl-10 lg:pt-10`}
+    >
       <Image
         src={logo}
         alt="logo iamge"
         className=" my-6 w-10 h-10 md:w-12 md:h-12"
       />
 
-      <button onClick={toggle} className="relative z-20 w-6 h-6 md:hidden">
+      <button
+        onClick={() => {
+           setOpened((state) => !state);
+        }}
+        className="relative z-20 w-6 h-6 md:hidden"
+      >
         <Image
           src={hamburger}
           alt="Icon Menu Open"
@@ -75,11 +82,13 @@ function Navbar() {
 
       <ul
         className={` list-none bg-[#97979729] transition rounded-l-md backdrop-blur-xl translate-x-full fixed top-0 right-0 h-screen w-64 z-0 pt-28 pl-8 md:relative md:h-24 md:w-fit md:px-12 md:pt-0 md:translate-x-0 md:flex md:justify-center md:items-center md:gap-x-12
-          lg:min-w-[50vw] ${!opened ? "  translate-x-40" : "translate-x-0"  }`}
+          lg:min-w-[50vw] ${!opened ? "  translate-x-40" : "-translate-x-0"}`}
       >
         {pages.map(({ title, href }, index) => (
           <Link
-            onClick={toggle}
+            onClick={() => {
+               setOpened((state) => !state);
+            }}
             key={index}
             href={href}
             className="nav-text uppercase relative text-white md:h-full"
@@ -90,9 +99,7 @@ function Navbar() {
                               isActive(href) && "active"
                             } `}
             >
-              <span className="block font-bold min-w-[20px] ">
-                0{index}
-              </span>
+              <span className="block font-bold min-w-[20px] ">0{index}</span>
               <span className="block">{title}</span>
               {isActive(href) && (
                 <motion.span
